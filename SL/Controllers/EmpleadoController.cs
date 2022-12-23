@@ -44,7 +44,7 @@ namespace SL.Controllers
             }
         }
 
-        [HttpDelete ("Delete/{idUsuario}")]
+        [HttpDelete ("Delete/{IdEmpleado}")]
         public IActionResult Delete(int IdEmpleado)
         {
             ML.Result result = new ML.Result();
@@ -60,7 +60,7 @@ namespace SL.Controllers
             }
         }
 
-        [HttpGet("Add")]
+        [HttpPost("Add")]
         public ActionResult Add(ML.Empleado empleado)
         {
             ML.Result result = new ML.Result();
@@ -77,7 +77,7 @@ namespace SL.Controllers
             }
         }
 
-        [HttpGet("Update")]
+        [HttpPost("Update")]
         public ActionResult Update(ML.Empleado empleado)
         {
             ML.Result result = new ML.Result();

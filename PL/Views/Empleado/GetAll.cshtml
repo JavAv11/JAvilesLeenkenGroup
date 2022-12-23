@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewData["Title"] = "GetAll";
+    Layout = "~/Views/Empleado/GetAll.cshtml";
+}
+
+<h1>GetAll</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Empelado</h2>
+        </div>
+    </div>
+</div>
+<br />
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="../wwwroot/js/Empleado/Empleado.js"></script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10"></div>
+        <div class="col-md-1" style="padding-left:100px">
+            @Html.ActionLink("Add","Form","Empleado",htmlAttributes:new {@class="btn btn-success"})
+        </div>
+    </div>
+</div>
+<br />
+
+<div class="row">
+    <div class="col-md-12">
+        <table id="tblEmpleado" class="table table-hover" border="1">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="col">Editar</th>
+                    <th class="text-center" scope="col">IdEmpleado</th>
+                    <th class="text-center" scope="col">Nombre</th>
+                    <th class="text-center" scope="col">Apellido Paterno</th>
+                    <th class="text-center" scope="col">Apellido Materno</th>
+                    <th class="text-center" scope="col">Numero de Nomina</th>
+                    <th class="text-center" scope="col">Id Estado</th>
+                    <th class="text-center" scope="col">Eliminar</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>

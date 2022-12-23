@@ -160,12 +160,11 @@ namespace BL
                     var query = context.Empleados.FromSql($"DeleteEmpleado {IdEmpleado}").AsEnumerable().FirstOrDefault();
                     if (query != null)
                     {
-                        result.Correct = false;
+                        result.Correct = true;
                     }
                     else
                     {
-
-                        result.Correct = true;
+                        result.Correct = false;
                     }
                 }
             }
