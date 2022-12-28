@@ -35,6 +35,7 @@ namespace BL
 
                             empleado.Estado = new ML.Estado();
                             empleado.Estado.IdEstado = objEmpleado.IdEstado.Value;
+                            empleado.Estado.Nombre = objEmpleado.Estados;
 
                             result.Objects.Add(empleado);
                         }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,8 +9,9 @@ namespace SL.Controllers
     [ApiController]
     public class EmpleadoController : ControllerBase
     {
-        
-        [HttpGet("GetAll")]
+        [EnableCors("API")]
+        [Route("GetAll")]
+        [HttpGet]
         public IActionResult GetAll()
         {
             ML.Empleado empleado = new ML.Empleado();
@@ -60,7 +62,9 @@ namespace SL.Controllers
             }
         }
 
-        [HttpPost("Add")]
+        [EnableCors("API")]
+        [Route("Add")]
+        [HttpPost]
         public ActionResult Add(ML.Empleado empleado)
         {
             ML.Result result = new ML.Result();

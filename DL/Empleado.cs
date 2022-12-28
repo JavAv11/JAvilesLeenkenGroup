@@ -18,4 +18,7 @@ public partial class Empleado
     public int? IdEstado { get; set; }
 
     public virtual Estado? IdEstadoNavigation { get; set; }
+
+    //Agregadas
+    public string Estados { get; set; }
 }

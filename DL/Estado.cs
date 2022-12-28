@@ -10,4 +10,9 @@ public partial class Estado
     public string? Nombre { get; set; }
 
     public virtual ICollection<Empleado> Empleados { get; } = new List<Empleado>();
+
+
+    //Agregadas
+
+    public string Estados { get; set; }
 }
