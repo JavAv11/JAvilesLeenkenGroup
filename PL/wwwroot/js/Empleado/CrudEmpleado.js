@@ -1,6 +1,4 @@
-﻿//<reference path="Empleado.js"/>
-
-$(document).ready(function () { //click
+﻿$(document).ready(function () { 
     GetAll();
     EstadoGetAll();
 
@@ -16,8 +14,7 @@ function GetAll() {
                 var filas =
                     '<tr>'
                     + '<td class="text-center">'
-                    + '<a class="btn btn-warning glyphicon glyphicon-edit" href="#" onclick="CreateRow(' + empleado.idEmpleado + ')">'
-
+                    + '<a class="btn btn-warning glyphicon glyphicon-edit" onclick="GetById(' + empleado.idEmpleado + ')">'
                     + '</a> '
                     + '</td>'
                     + "<td  id='IdEmpleado' class='text-center'>" + empleado.idEmpleado + "</td>"
@@ -27,7 +24,7 @@ function GetAll() {
                     + "<td  class='text-center'>" + empleado.numeroNomina + "</ td>"
                     + "<td  class='text-center'>" + empleado.estado.idEstado + "</td>" 
                     + "<td  class='text-center'>" + empleado.estado.nombre + "</td>"+
-                    '<td class="text-center"> <button class="btn btn-danger" onclick="Eliminar(' + empleado.idEmpleado + ')"><span class="glyphicon glyphicon-trash" style="color:#FFFFFF"></span></button></td>'
+                    '<td class="text-center"> <button class="btn btn-danger" onclick="Delete(' + empleado.idEmpleado + ')"><span class="glyphicon glyphicon-trash" style="color:#FFFFFF"></span></button></td>'
                     + "</tr";
                 $("#tblEmpleado tbody").append(filas);
             });
@@ -57,6 +54,7 @@ function Add(empleado) {
         }
     });
 }
+
 function Update(empleado) {
 
     $.ajax({
@@ -81,8 +79,8 @@ function Delete(idEmpleado) {
 
     if (confirm("¿Estas seguro de eliminar el empleado seleccionado?")) {
         $.ajax({
-            type: 'GET',
-            url: 'http://localhost:5254/api/Empleado/Delete/?IdEmpleado=' + IdEmpleado,
+            type: 'DELETE',
+            url: 'http://localhost:5254/api/Empleado/Delete/' + idEmpleado,
             success: function (result) {
                 $('#myModal').modal();
                 GetAll();
@@ -98,19 +96,27 @@ function Delete(idEmpleado) {
 function ShowModal() {
     $('#ModalForm').modal('show');
 }
+function HideModal() {
+    $('#ModalForm').modal('hide');
+}
+
 
 function Save() {
     var empleado = {
         idEmpleado: $('#txtIdEmpleado').val(),
-        numeroNomina: $('#txtNumeroNomina').val(),
+        numeroNomina: '',
         nombre: $('#txtNombre').val(),
         apellidoPaterno: $('#txtApellidoPaterno').val(),
         apellidoMaterno: $('#txtApellidoMaterno').val(),
         estado: {
-            idEstado: $('#ddlEstado').val()
-        }
+            idEstado: $('#txtEstado').val(),
+            nombre: '',
+            estados:[]
+        },
+        empleados:[]
     }
     if ($('#txtIdEmpleado').val() == "") {
+        empleado.idEmpleado=0,
         Add(empleado);
     }
     else {
@@ -130,5 +136,27 @@ function EstadoGetAll() {
                     + estado.Nombre + '</option>');
             });
         }
+    });
+}
+
+function GetById(idEmpleado) {
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost:5254/api/Empleado/GetById/' + idEmpleado,
+        success: function (result) {
+            $('#txtIdEmpleado').val(result.object.idEmpleado);
+            $('#txtNombre').val(result.object.nombre);
+            $('#txtApellidoPaterno').val(result.object.apellidoPaterno);
+            $('#txtApellidoMaterno').val(result.object.apellidoMaterno);
+            $('#txtNumeroNomina').val(result.object.numeroNomina);
+            $('#txtEstado').val(result.object.estado.idEstado);
+
+            $('#ModalForm').modal('show');
+        },
+        error: function (result) {
+            alert('Error en la consulta.' + result.responseJSON.ErrorMessage);
+        }
+
+
     });
 }

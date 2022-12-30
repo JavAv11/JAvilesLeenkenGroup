@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "GetAll";
     //Layout = "~/Views/Empleado/GetAll.cshtml";
 }
@@ -82,17 +81,21 @@
                         <label>Apellido Materno:</label>
                         <input type="text" class="form-control" id="txtApellidoMaterno" placeholder="Apellido Materno" />
                     </div>
-
                     <div class="form-group">
                         <label>Estado:</label>
-                        <select class="form-control" name="ddlEstados" id="ddlEstados"></select>
+                        <input type="text" class="form-control" id="txtEstado" placeholder="IdEstado" />
                     </div>
+
+                    @*<div class="form-group">
+                        <label>Estado:</label>
+                        <select class="form-control" name="ddlEstados" id="ddlEstados"></select>
+                    </div>*@
                 </form>
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" id="btnGuardar" onclick="Save()">Guardar</button>
-                <button type="button" class="btn btn-danger"  data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" onclick="HideModal()">Cancelar</button>
             </div>
         </div>
     </div>

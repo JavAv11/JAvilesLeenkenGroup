@@ -29,7 +29,9 @@ namespace SL.Controllers
 
         }
 
-        [HttpGet("GetById/{IdEmpleado}")]
+        [EnableCors("API")]
+        [Route("GetById/{IdEmpleado}")]
+        [HttpGet]
         public IActionResult Get(int IdEmpleado)
         {
             ML.Empleado empleado = new ML.Empleado();
@@ -46,7 +48,9 @@ namespace SL.Controllers
             }
         }
 
-        [HttpDelete ("Delete/{IdEmpleado}")]
+        [EnableCors("API")]
+        [Route("Delete/{IdEmpleado}")]
+        [HttpDelete]
         public IActionResult Delete(int IdEmpleado)
         {
             ML.Result result = new ML.Result();
@@ -81,7 +85,9 @@ namespace SL.Controllers
             }
         }
 
-        [HttpPost("Update")]
+        [EnableCors("API")]
+        [Route("Update")]
+        [HttpPost]
         public ActionResult Update(ML.Empleado empleado)
         {
             ML.Result result = new ML.Result();

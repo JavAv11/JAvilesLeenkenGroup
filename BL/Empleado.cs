@@ -65,6 +65,7 @@ namespace BL
                 using (DL.JavilesLeenkenGroupContext context = new DL.JavilesLeenkenGroupContext())
                 {
                     var query = context.Empleados.FromSqlRaw($"GetByIdEmpleado {IdEmpleado}").AsEnumerable().FirstOrDefault();
+                    result.Objects = new List<object>();
                     if(query != null)
                     {
                         ML.Empleado objEmpleado = new ML.Empleado();
@@ -76,6 +77,7 @@ namespace BL
 
                         objEmpleado.Estado = new ML.Estado();
                         objEmpleado.Estado.IdEstado = query.IdEstado.Value;
+                        objEmpleado.Estado.Nombre = query.Estados;
 
                         result.Object = objEmpleado;
 

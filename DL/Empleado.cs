@@ -5,7 +5,7 @@ namespace DL;
 
 public partial class Empleado
 {
-    public int IdEmpleado { get; set; }
+    public int? IdEmpleado { get; set; }
 
     public string? NumeroNomina { get; set; }
 
@@ -20,5 +20,5 @@ public partial class Empleado
     public virtual Estado? IdEstadoNavigation { get; set; }
 
     //Agregadas
-    public string Estados { get; set; }
+    public string? Estados { get; set; }
 }
